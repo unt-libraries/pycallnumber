@@ -1,6 +1,15 @@
-"""Work with various types of call numbers and call number parts."""
+"""The pycallnumber top-level package.
+
+This package allows you to work with call numbers (Library of Congress,
+Dewey Decimal, US SuDocs, and others)--parse them, normalize them, sort
+them.
+"""
 
 from __future__ import unicode_literals
+
+__version__ = '0.1'
+__author__ = 'Jason Thomale'
+
 import settings
 from exceptions import CallNumberError, CallNumberWarning,\
                        InvalidCallNumberStringError, SettingsError,\
