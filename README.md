@@ -1,4 +1,4 @@
-# pycallnumber
+# pycallnumber [![Build Status](https://travis-ci.org/jthomale/pycallnumber.svg?branch=master)](https://travis-ci.org/jthomale/pycallnumber)
 
 
 ## About
