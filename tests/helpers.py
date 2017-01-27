@@ -1,7 +1,6 @@
 """Contains utility functions used for test code."""
 
 from __future__ import unicode_literals
-import re
 
 import pytest
 

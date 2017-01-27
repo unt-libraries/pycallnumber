@@ -1,5 +1,4 @@
 from __future__ import unicode_literals
-import warnings
 
 import pytest
 
@@ -725,7 +724,7 @@ def test_Unit_validate_is_valid(tclass, tstr):
     initialized.
 
     """
-    unit = tclass(tstr)
+    tclass(tstr)
 
 
 @pytest.mark.parametrize('tclass, tstr', INVALID_TEST_PARAMS)
@@ -735,7 +734,7 @@ def test_Unit_validate_not_valid(tclass, tstr):
 
     """
     with pytest.raises(e.InvalidCallNumberStringError):
-        unit = tclass(tstr)
+        tclass(tstr)
 
 
 @pytest.mark.parametrize('tclass, opts, tstr, expected', DISPLAY_TEST_PARAMS)

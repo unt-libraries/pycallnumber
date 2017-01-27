@@ -2,6 +2,10 @@ language: python
 python: "2.7"
 env:
   - TOX_ENV=py27
+  - TOX_ENV=flake8
+matrix:
+  allow_failures:
+    - env: TOX_ENV=flake8
 install:
   - "pip install ."
   - "pip install tox"

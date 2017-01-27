@@ -324,7 +324,7 @@ def test_grouping_init_fails_without_types():
     ``types`` kwarg raises a SettingsError.
     """
     with pytest.raises(e.SettingsError):
-        grouping = t.Grouping(name='one')
+        t.Grouping(name='one')
 
 
 def test_grouping_init_fails_without_name():
@@ -332,7 +332,7 @@ def test_grouping_init_fails_without_name():
     ``name`` kwarg raises a SettingsError.
     """
     with pytest.raises(e.SettingsError):
-        grouping = t.Grouping(types=[alpha_utype])
+        t.Grouping(types=[alpha_utype])
 
 
 def test_grouping_is_optional():
@@ -390,7 +390,7 @@ def test_grouping_cnstr_to_units_error(params, tstr):
     p = r'^{}$'.format(grouping.get_full_regex().pattern)
     if re.search(p, tstr):
         with pytest.raises(e.InvalidCallNumberStringError):
-            split = grouping.cnstr_to_units(tstr, {})
+            grouping.cnstr_to_units(tstr, {})
 
 
 # CompoundTemplate ****************************************************

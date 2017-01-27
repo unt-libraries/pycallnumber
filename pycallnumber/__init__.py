@@ -7,9 +7,6 @@ them.
 
 from __future__ import unicode_literals
 
-__version__ = '0.1'
-__author__ = 'Jason Thomale'
-
 import settings
 from exceptions import CallNumberError, CallNumberWarning,\
                        InvalidCallNumberStringError, SettingsError,\
@@ -22,3 +19,12 @@ from set import RangeSet
 import units
 import utils
 from factories import callnumber, cnrange, cnset
+
+__version__ = '0.1'
+__author__ = 'Jason Thomale'
+__all__ = [settings, CallNumberError, CallNumberWarning,
+           InvalidCallNumberStringError, SettingsError, MethodError,
+           OptionsError, UtilsError, RangeSetError, BadRange, Options,
+           ObjectWithOptions, Template, SimpleTemplate, CompoundTemplate,
+           Grouping, Unit, SimpleUnit, CompoundUnit, RangeSet, units,
+           utils, callnumber, cnrange, cnset]
