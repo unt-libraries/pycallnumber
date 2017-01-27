@@ -1,17 +1,13 @@
 from __future__ import unicode_literals
-import re
-import operator
 
 import pytest
 
-from context import settings
 from context import unit as un
 from context import units as uns
 from context import template as t
 from context import exceptions as e
 from context import set as s
 from context import factories as f
-from helpers import generate_params, mark_params
 
 
 # Fixtures, factories, and test data

@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 
 from pycallnumber.template import CompoundTemplate
 from pycallnumber.units.simple import Formatting, DEFAULT_SEPARATOR_TYPE
-from base import BaseDate, AlphaDatePart, NumericDatePart, CompoundDatePart
+from base import BaseDate
 from parts import Year, Month, Day
 
 

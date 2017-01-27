@@ -1,5 +1,4 @@
 from __future__ import unicode_literals
-import re
 import operator
 
 import pytest
@@ -1941,10 +1940,10 @@ RSET_DATA = {
             (operator.xor, s.RangeSet((ab0, ab100))),
         ],
     },
-    # Note: here the second set (ab0, ab100) will actually be tested as
+    # Note: here the second set (aa0, aa100) will actually be tested as
     # a Range object
     (((aa0, aa100), (ab0, ab100)),
-     (ab0, ab100)): {
+     (aa0, aa100)): {
         'comparison': [
             (operator.lt, False),
             (operator.le, False),
@@ -2242,9 +2241,9 @@ RSET_DATA = {
             (operator.xor, s.RangeSet((ab0, ab100))),
         ],
     },
-    # Note: here the first set (ab0, ab100) will actually be tested as
+    # Note: here the first set (aa0, aa100) will actually be tested as
     # a Range object
-    ((ab0, ab100),
+    ((aa0, aa100),
      ((aa0, aa100), (ab0, ab100))): {
         'comparison': [
             (operator.lt, True),

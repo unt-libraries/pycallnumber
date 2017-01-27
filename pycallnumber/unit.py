@@ -2,11 +2,10 @@
 
 
 from __future__ import unicode_literals
-import re
 import inspect
 
 from options import ObjectWithOptions
-from exceptions import InvalidCallNumberStringError, SettingsError
+from exceptions import InvalidCallNumberStringError
 from template import Template, SimpleTemplate, CompoundTemplate
 import utils as u
 

@@ -8,7 +8,7 @@ import termios
 import struct
 import importlib
 
-from exceptions import InvalidCallNumberStringError, UtilsError
+from exceptions import InvalidCallNumberStringError
 
 
 def memoize(function):

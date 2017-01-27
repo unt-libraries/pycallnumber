@@ -1,7 +1,6 @@
 """Use factories to generate call number units and ranges."""
 
 import settings
-from set import RangeSet
 from utils import create_unit, load_class
 from exceptions import InvalidCallNumberStringError, SettingsError
 

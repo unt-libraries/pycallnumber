@@ -180,7 +180,7 @@ def test_memoize_keys_key_generation(factory, args, kwargs, suffix):
     """
     function = factory()
     test_key = 'f{}'.format(suffix)
-    return_val = function(*args, **kwargs)
+    function(*args, **kwargs)
     assert test_key in function._cache
 
 
@@ -201,7 +201,7 @@ def test_memoize_bound_method_key():
     the correct key.
     """
     test_object = MemoizeBoundMethodTester()
-    return_val1 = test_object.args_kwargs('1', '2', kwarg2='3')
+    test_object.args_kwargs('1', '2', kwarg2='3')
     test_key = 'args_kwargs_1_2_one_3'
     assert test_key in test_object._cache
     assert not hasattr(MemoizeBoundMethodTester.args_kwargs, '_cache')
