@@ -2,10 +2,11 @@
 
 
 from __future__ import unicode_literals
+from __future__ import absolute_import
 
 from pycallnumber.template import CompoundTemplate
 from pycallnumber.unit import CompoundUnit
-from simple import Alphabetic, Numeric, Formatting, DEFAULT_SEPARATOR_TYPE
+from .simple import Alphabetic, Numeric, Formatting, DEFAULT_SEPARATOR_TYPE
 
 
 class AlphaNumeric(CompoundUnit):

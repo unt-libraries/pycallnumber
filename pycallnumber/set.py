@@ -2,12 +2,14 @@
 
 
 from __future__ import unicode_literals
+from __future__ import absolute_import
 import operator
 import copy
 
-from exceptions import RangeSetError, BadRange
-from unit import Unit
-import utils as u
+from .exceptions import RangeSetError, BadRange
+from .unit import Unit
+from . import utils as u
+from functools import reduce
 
 
 class NonDiscreteSet(object):

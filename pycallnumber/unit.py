@@ -2,12 +2,13 @@
 
 
 from __future__ import unicode_literals
+from __future__ import absolute_import
 import inspect
 
-from options import ObjectWithOptions
-from exceptions import InvalidCallNumberStringError
-from template import Template, SimpleTemplate, CompoundTemplate
-import utils as u
+from .options import ObjectWithOptions
+from .exceptions import InvalidCallNumberStringError
+from .template import Template, SimpleTemplate, CompoundTemplate
+from . import utils as u
 
 
 class Unit(u.ComparableObjectMixin, ObjectWithOptions):

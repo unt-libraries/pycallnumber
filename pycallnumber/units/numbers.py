@@ -2,6 +2,7 @@
 
 
 from __future__ import unicode_literals
+from __future__ import absolute_import
 import decimal
 import math
 import copy
@@ -10,8 +11,8 @@ from pycallnumber import settings
 from pycallnumber.exceptions import InvalidCallNumberStringError, SettingsError
 from pycallnumber.template import CompoundTemplate
 import pycallnumber.utils as u
-from simple import Alphabetic, Numeric, Formatting
-from compound import AlphaNumericSymbol
+from .simple import Alphabetic, Numeric, Formatting
+from .compound import AlphaNumericSymbol
 
 
 ThreeDigits = Numeric.derive(

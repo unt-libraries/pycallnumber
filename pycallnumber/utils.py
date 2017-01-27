@@ -1,4 +1,5 @@
 """Miscellaneous utility functions and classes."""
+from __future__ import absolute_import
 
 import functools
 import inspect
@@ -8,7 +9,7 @@ import termios
 import struct
 import importlib
 
-from exceptions import InvalidCallNumberStringError
+from .exceptions import InvalidCallNumberStringError
 
 
 def memoize(function):
@@ -52,7 +53,7 @@ def memoize(function):
         else:
             obj = function
         cache = getattr(obj, '_cache', {})
-        key = generate_key(function.func_name, args, kwargs)
+        key = generate_key(function.__name__, args, kwargs)
         if key not in cache:
             cache[key] = function(*args, **kwargs)
             obj._cache = cache
