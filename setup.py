@@ -23,8 +23,6 @@ setuptools.setup(
     description=description,
     long_description=('Visit {} for the latest documentation.'.format(url)),
     packages=setuptools.find_packages(),
-    setup_requires=['pytest-runner'],
-    tests_require=['pytest'],
     classifiers=[
         'Intended Audience :: Education',
         'Natural Language :: English',
