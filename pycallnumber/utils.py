@@ -1,6 +1,9 @@
 """Miscellaneous utility functions and classes."""
 from __future__ import absolute_import
 
+from builtins import str
+from builtins import range
+from builtins import object
 import functools
 import inspect
 import re
@@ -203,6 +206,9 @@ class ComparableObjectMixin(object):
     def __le__(self, other):
         return self._compare(other, 'le', lambda s, o: s <= o)
 
+    def __hash__(self):
+        return super(ComparableObjectMixin, self).__hash__()
+
     def cmp_key(self, other, op):
         return str(self)
 
@@ -231,12 +237,12 @@ class Infinity(ComparableObjectMixin, object):
         positive Infinity should be greater than any other string, and
         negative Infinity should be less than any other string. If pos,
         it takes the other key and adds a space to the end, ensuring
-        that this cmp_key will always be larger; if neg, it returns
-        None, which is less than an empty string.
+        that this cmp_key will always be larger; if neg, it returns an
+        empty string.
         """
         if isinstance(other, Infinity):
             return str(self)
         if self.sign == 'pos':
             okey = self._get_other(other, op)
             return '{} '.format(okey)
-        return None
+        return ''

@@ -3,6 +3,7 @@
 
 from __future__ import unicode_literals
 from __future__ import absolute_import
+from builtins import object
 from .exceptions import OptionsError
 
 
@@ -21,7 +22,7 @@ class Options(dict):
         self.defopts = parent_class.options_defaults
         self.sources = {}
         self.validate_options(useropts)
-        for option, default in self.defopts.iteritems():
+        for option, default in self.defopts.items():
             if option in useropts:
                 value = useropts[option]
                 is_from_defaults = False
@@ -38,7 +39,7 @@ class Options(dict):
             raise OptionsError(msg)
 
     def validate_options(self, useropts):
-        for option in useropts.keys():
+        for option in list(useropts.keys()):
             self.validate_option(option)
 
     def set_option(self, option, value, is_from_defaults=False,
@@ -76,7 +77,7 @@ class ObjectWithOptions(object):
         key/value pairs where a key is present in options_defaults.
         """
         outopts = {}
-        for opt in cls.options_defaults.keys():
+        for opt in list(cls.options_defaults.keys()):
             if opt in useropts:
                 outopts[opt] = useropts[opt]
         return outopts
@@ -94,7 +95,7 @@ class ObjectWithOptions(object):
         'argument'.
         """
         protect_opts_set_by = protect_opts_set_by or []
-        for option, value in other.options.iteritems():
+        for option, value in other.options.items():
             opt_src = other.get_option_source(option)
             if opt_src not in protect_opts_set_by:
                 other.set_option(option, self.options.get(option, value))
@@ -112,5 +113,5 @@ class ObjectWithOptions(object):
         setattr(self, option, self.options[option])
 
     def apply_options_to_self(self):
-        for option, value in self.options.iteritems():
+        for option, value in self.options.items():
             setattr(self, option, value)

@@ -3,6 +3,7 @@
 
 from __future__ import unicode_literals
 from __future__ import absolute_import
+from builtins import str
 import inspect
 
 from .options import ObjectWithOptions
@@ -26,7 +27,7 @@ class Unit(u.ComparableObjectMixin, ObjectWithOptions):
     def __init__(self, cnstr, name='', **useropts):
         super(Unit, self).__init__(**useropts)
         self._validate_result = type(self).validate(cnstr, self.options)
-        self._string = unicode(cnstr)
+        self._string = str(cnstr)
         self.name = name
 
     @classmethod
@@ -50,7 +51,7 @@ class Unit(u.ComparableObjectMixin, ObjectWithOptions):
                 exclude_template_opts.append('{}_description'.format(prefix))
                 exclude_template_opts.append('{}_description_plural'
                                              ''.format(prefix))
-        for opt, val in template.options.iteritems():
+        for opt, val in template.options.items():
             val = None if opt in exclude_template_opts else val
             new_template_opts[opt] = attributes.pop(opt, val)
         attributes['template'] = template_class(**new_template_opts)

@@ -6,6 +6,8 @@ This contains Unit implementations for various pieces of dates.
 
 from __future__ import unicode_literals
 from __future__ import absolute_import
+from builtins import str
+from builtins import range
 from datetime import datetime
 
 from pycallnumber.template import SimpleTemplate, CompoundTemplate
@@ -60,7 +62,7 @@ class AlphaMonth(AlphaDatePart):
 
     @classmethod
     def derive(cls, **attr):
-        months = attr['months'].keys()
+        months = list(attr['months'].keys())
         months.sort(key=lambda x: int(attr['months'][x]))
         base_pattern = ''
         for month in months:

@@ -1,6 +1,7 @@
 """Represent the most basic types of call number parts."""
 
 from __future__ import unicode_literals
+from builtins import str
 import decimal
 import math
 

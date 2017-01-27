@@ -1,4 +1,5 @@
 from __future__ import unicode_literals
+from builtins import str
 import re
 
 import pytest
@@ -482,9 +483,9 @@ def gp_tuple_to_dict(gp_tuple):
     d = {}
     for i, param in enumerate(params):
         if i < len(gp_tuple):
-            d[param.keys()[0]] = gp_tuple[i]
+            d[list(param.keys())[0]] = gp_tuple[i]
         else:
-            d[param.keys()[0]] = param.values()[0]
+            d[list(param.keys())[0]] = list(param.values())[0]
     return d
 
 
