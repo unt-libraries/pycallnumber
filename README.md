@@ -15,6 +15,8 @@ Testing/development for Python 3 is on the to-do list.
 
 ### Setup
 
+Download the repository to a directory&mdash;we'll use `pycallnumber` for simplicity.
+
 ```sh
 $ git clone https://github.com/jthomale/pycallnumber.git pycallnumber
 ```
@@ -23,12 +25,17 @@ or (SSH)
 $ git clone git@github.com:jthomale/pycallnumber.git pycallnumber
 ```
 
-Installing to a virtualenv using pip is recommended.
+Installing to a [virtualenv](http://docs.python-guide.org/en/latest/dev/virtualenvs/) using pip is recommended.
 
+```sh
+$ pip install ./pycallnumber
+```
+or, if you're updating to a newer version,
 ```sh
 $ pip install --update ./pycallnumber
 ```
-Otherwise,
+
+If not using pip, you can run the setuptools install command instead:
 ```sh
 $ cd pycallnumber
 $ python setup.py install
@@ -36,10 +43,26 @@ $ python setup.py install
 
 ### Tests
 
-If you want to run tests (before or after installation):
+(The below commands assume you're in the repository root.)
+
+Using [tox](https://tox.readthedocs.io/) to run tests is recommended.
 ```sh
-$ cd pycallnumber
-$ python setup.py test
+$ pip install tox
+$ tox               # run tests against all configured environments
+$ tox -e py27       # run tests against python 2.7
+```
+
+Tox calls [pytest](http://doc.pytest.org/) to run tests, so you can of course also run tests this way.
+```sh
+$ pip install pytest
+$ py.test
+```
+
+What's the difference? Running `py.test` directly runs tests using your currently active Python environment. Tox gives you a consistent way to run tests against one or more particular environments without having to juggle them yourself.
+
+Finally, note that you can pass arguments to py.test from tox, using `tox -- ...`. Anything after the `--` is passed to py.test.
+```sh
+$ tox -- -x tests/test_units.py
 ```
 
 
