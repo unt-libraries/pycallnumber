@@ -9,9 +9,9 @@ Use pycallnumber in your library's Python projects to parse, model, and manipula
 
 ### Requirements
 
-  * Python 2 >= 2.7
-
-Testing/development for Python 3 is on the to-do list.
+  * Python 2
+    * Python 2.7 and future
+  * OR Python 3, >= 3.4
 
 ### Setup
 
@@ -49,7 +49,9 @@ Using [tox](https://tox.readthedocs.io/) to run tests is recommended.
 ```sh
 $ pip install tox
 $ tox               # run tests against all configured environments
-$ tox -e py27       # run tests against python 2.7
+$ tox -e py27       # run tests just against python 2.7
+$ tox -e py34       # run tests just against python 3.4
+etc.
 ```
 
 Tox calls [pytest](http://doc.pytest.org/) to run tests, so you can of course also run tests this way.
@@ -60,9 +62,9 @@ $ py.test
 
 What's the difference? Running `py.test` directly runs tests using your currently active Python environment. Tox gives you a consistent way to run tests against one or more particular environments without having to juggle them yourself.
 
-Finally, note that you can pass arguments to py.test from tox, using `tox -- ...`. Anything after the `--` is passed to py.test.
+Finally, note that you can pass arguments to py.test from tox, using `tox -- ...`. Arguments after the `--` are passed to py.test.
 ```sh
-$ tox -- -x tests/test_units.py
+$ tox -- -x        # -x is passed to py.test
 ```
 
 
