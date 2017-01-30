@@ -3,7 +3,6 @@
 
 from __future__ import unicode_literals
 from __future__ import absolute_import
-from builtins import str
 import inspect
 
 from .options import ObjectWithOptions

@@ -1,4 +1,5 @@
 """Miscellaneous utility functions and classes."""
+from __future__ import unicode_literals
 from __future__ import absolute_import
 
 from builtins import str
@@ -227,7 +228,8 @@ class Infinity(ComparableObjectMixin, object):
         return ret
 
     def _get_other(self, other, op):
-        return getattr(other, 'cmp_key', lambda ot, op: str(other))(self, op)
+        str_other = '{}'.format(other)
+        return getattr(other, 'cmp_key', lambda ot, op: str_other)(self, op)
 
     def cmp_key(self, other, op):
         """
@@ -244,5 +246,6 @@ class Infinity(ComparableObjectMixin, object):
             return str(self)
         if self.sign == 'pos':
             okey = self._get_other(other, op)
-            return '{} '.format(okey)
+            selfkey = '{} '.format(okey)
+            return selfkey
         return ''
