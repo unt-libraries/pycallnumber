@@ -6,19 +6,20 @@ them.
 """
 
 from __future__ import unicode_literals
+from __future__ import absolute_import
 
-import settings
-from exceptions import CallNumberError, CallNumberWarning,\
+from . import settings
+from .exceptions import CallNumberError, CallNumberWarning,\
                        InvalidCallNumberStringError, SettingsError,\
                        MethodError, OptionsError, UtilsError, RangeSetError,\
                        BadRange
-from options import Options, ObjectWithOptions
-from template import Template, SimpleTemplate, CompoundTemplate, Grouping
-from unit import Unit, SimpleUnit, CompoundUnit
-from set import RangeSet
-import units
-import utils
-from factories import callnumber, cnrange, cnset
+from .options import Options, ObjectWithOptions
+from .template import Template, SimpleTemplate, CompoundTemplate, Grouping
+from .unit import Unit, SimpleUnit, CompoundUnit
+from .set import RangeSet
+from . import units
+from . import utils
+from .factories import callnumber, cnrange, cnset
 
 __version__ = '0.1'
 __author__ = 'Jason Thomale'

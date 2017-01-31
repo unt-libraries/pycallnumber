@@ -1,4 +1,5 @@
 from __future__ import unicode_literals
+from builtins import object
 import operator
 
 import pytest
@@ -141,12 +142,12 @@ INFINITY_COMP_PARAMS = [
     ((u.Infinity(), test_unit_high), operator.ne, True),
     ((u.Infinity(), test_unit_high), operator.gt, True),
     ((u.Infinity(), test_unit_high), operator.ge, True),
-    ((-u.Infinity(), ''), operator.lt, True),
-    ((-u.Infinity(), ''), operator.le, True),
-    ((-u.Infinity(), ''), operator.eq, False),
-    ((-u.Infinity(), ''), operator.ne, True),
-    ((-u.Infinity(), ''), operator.gt, False),
-    ((-u.Infinity(), ''), operator.ge, False),
+    ((-u.Infinity(), ' '), operator.lt, True),
+    ((-u.Infinity(), ' '), operator.le, True),
+    ((-u.Infinity(), ' '), operator.eq, False),
+    ((-u.Infinity(), ' '), operator.ne, True),
+    ((-u.Infinity(), ' '), operator.gt, False),
+    ((-u.Infinity(), ' '), operator.ge, False),
     ((-u.Infinity(), test_unit_low), operator.lt, True),
     ((-u.Infinity(), test_unit_low), operator.le, True),
     ((-u.Infinity(), test_unit_low), operator.eq, False),

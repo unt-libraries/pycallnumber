@@ -1,5 +1,10 @@
 """Miscellaneous utility functions and classes."""
+from __future__ import unicode_literals
+from __future__ import absolute_import
 
+from builtins import str
+from builtins import range
+from builtins import object
 import functools
 import inspect
 import re
@@ -8,7 +13,7 @@ import termios
 import struct
 import importlib
 
-from exceptions import InvalidCallNumberStringError
+from .exceptions import InvalidCallNumberStringError
 
 
 def memoize(function):
@@ -52,7 +57,7 @@ def memoize(function):
         else:
             obj = function
         cache = getattr(obj, '_cache', {})
-        key = generate_key(function.func_name, args, kwargs)
+        key = generate_key(function.__name__, args, kwargs)
         if key not in cache:
             cache[key] = function(*args, **kwargs)
             obj._cache = cache
@@ -202,6 +207,9 @@ class ComparableObjectMixin(object):
     def __le__(self, other):
         return self._compare(other, 'le', lambda s, o: s <= o)
 
+    def __hash__(self):
+        return super(ComparableObjectMixin, self).__hash__()
+
     def cmp_key(self, other, op):
         return str(self)
 
@@ -220,7 +228,8 @@ class Infinity(ComparableObjectMixin, object):
         return ret
 
     def _get_other(self, other, op):
-        return getattr(other, 'cmp_key', lambda ot, op: str(other))(self, op)
+        str_other = '{}'.format(other)
+        return getattr(other, 'cmp_key', lambda ot, op: str_other)(self, op)
 
     def cmp_key(self, other, op):
         """
@@ -230,12 +239,13 @@ class Infinity(ComparableObjectMixin, object):
         positive Infinity should be greater than any other string, and
         negative Infinity should be less than any other string. If pos,
         it takes the other key and adds a space to the end, ensuring
-        that this cmp_key will always be larger; if neg, it returns
-        None, which is less than an empty string.
+        that this cmp_key will always be larger; if neg, it returns an
+        empty string.
         """
         if isinstance(other, Infinity):
             return str(self)
         if self.sign == 'pos':
             okey = self._get_other(other, op)
-            return '{} '.format(okey)
-        return None
+            selfkey = '{} '.format(okey)
+            return selfkey
+        return ''

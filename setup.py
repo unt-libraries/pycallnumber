@@ -23,6 +23,9 @@ setuptools.setup(
     description=description,
     long_description=('Visit {} for the latest documentation.'.format(url)),
     packages=setuptools.find_packages(),
+    install_requires=[
+        'future;python_version=="2.7"'
+    ],
     classifiers=[
         'Intended Audience :: Education',
         'Natural Language :: English',

@@ -1,13 +1,14 @@
 """Work with US SuDocs numbers as Units."""
 
 from __future__ import unicode_literals
+from __future__ import absolute_import
 
 from pycallnumber.template import CompoundTemplate
 from pycallnumber.unit import CompoundUnit
 from pycallnumber.units.simple import Alphabetic, Numeric, Formatting,\
                                       DEFAULT_SEPARATOR_TYPE
 from pycallnumber.units.compound import AlphaNumericSymbol
-from parts import Cutter
+from .parts import Cutter
 
 
 # Various base SimpleUnits for SuDoc component classes

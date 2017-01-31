@@ -2,6 +2,7 @@
 
 from __future__ import unicode_literals
 
+from builtins import range
 import pytest
 
 
@@ -68,7 +69,7 @@ def flatten_parameters(params_dict):
     Dictionary keys always become the first member of each tuple.
     """
     flattened = []
-    for kind, params in params_dict.iteritems():
+    for kind, params in params_dict.items():
         for values in params:
             if not isinstance(values, (tuple)):
                 values = (values,)
@@ -78,7 +79,7 @@ def flatten_parameters(params_dict):
 
 def generate_params(data, param_type):
     flattened = []
-    for kind, param_sets in data.iteritems():
+    for kind, param_sets in data.items():
         markers = [getattr(pytest.mark, m)
                    for m in param_sets.get('markers', [])]
         markers.append(getattr(pytest.mark, param_type))

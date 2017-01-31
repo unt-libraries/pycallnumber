@@ -1,13 +1,14 @@
 """Work with Library of Congress call numbers as Units."""
 
 from __future__ import unicode_literals
+from __future__ import absolute_import
 
 from pycallnumber.template import CompoundTemplate
 from pycallnumber.units.simple import Alphabetic, Formatting,\
                                       DEFAULT_SEPARATOR_TYPE
 from pycallnumber.units.compound import AlphaNumericSymbol
 from pycallnumber.units.numbers import Number
-from parts import Cutter, Edition, Item
+from .parts import Cutter, Edition, Item
 
 
 class LcClass(AlphaNumericSymbol):

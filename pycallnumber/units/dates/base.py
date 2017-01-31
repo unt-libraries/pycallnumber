@@ -7,6 +7,8 @@ represented as Units more easily.
 
 from __future__ import unicode_literals
 
+from builtins import str
+from builtins import object
 from pycallnumber.template import CompoundTemplate
 from pycallnumber.unit import SimpleUnit
 from pycallnumber.units.simple import Alphabetic, Numeric

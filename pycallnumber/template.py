@@ -2,12 +2,15 @@
 
 
 from __future__ import unicode_literals
+from __future__ import absolute_import
+from builtins import str
 import re
 import collections
 
-from options import ObjectWithOptions
-from exceptions import InvalidCallNumberStringError, SettingsError, MethodError
-import utils as u
+from .options import ObjectWithOptions
+from .exceptions import InvalidCallNumberStringError, SettingsError,\
+                        MethodError
+from . import utils as u
 
 
 class Template(ObjectWithOptions):
@@ -227,7 +230,7 @@ class Grouping(ObjectWithOptions):
     def _generate_pattern_with_inner_sep(self):
         pattern = ''
         base_p = self.get_base_regex().pattern
-        if (self.max > 1 or self.max is None) and self.inner_sep_type:
+        if (self.max is None or self.max > 1) and self.inner_sep_type:
             sep_p = self.get_inner_separator_regex().pattern
             first_min = self.min - 1 if self.min > 0 else 0
             first_max = self.max - 1 if self.max else None
@@ -489,7 +492,7 @@ class CompoundTemplate(Template):
             except InvalidCallNumberStringError as e:
                 msg = ('{}While parsing the {} grouping, \'{}\' was found to '
                        'be invalid. {} {}'
-                       ''.format(msg, g.name, match_str, e.message,
+                       ''.format(msg, g.name, match_str, e.args[0],
                                  g.describe()))
                 raise InvalidCallNumberStringError(msg)
             partlist.extend(parts)

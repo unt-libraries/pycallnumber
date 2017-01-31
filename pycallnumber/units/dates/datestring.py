@@ -2,11 +2,12 @@
 
 
 from __future__ import unicode_literals
+from __future__ import absolute_import
 
 from pycallnumber.template import CompoundTemplate
 from pycallnumber.units.simple import Formatting, DEFAULT_SEPARATOR_TYPE
-from base import BaseDate
-from parts import Year, Month, Day
+from .base import BaseDate
+from .parts import Year, Month, Day
 
 
 Separator = Formatting.derive(
