@@ -15,14 +15,14 @@ Use pycallnumber in your library's Python projects to parse, model, and manipula
 
 ### Setup
 
-Download the repository to a directory&mdash;we'll use `pycallnumber` for simplicity.
+Download the repository to a project directory like `pycallnumber`:
 
 ```sh
-$ git clone https://github.com/jthomale/pycallnumber.git pycallnumber
+$ git clone https://github.com/unt-libraries/pycallnumber.git pycallnumber
 ```
 or (SSH)
 ```sh
-$ git clone git@github.com:jthomale/pycallnumber.git pycallnumber
+$ git clone git@github.com:unt-libraries/pycallnumber.git pycallnumber
 ```
 
 Installing to a [virtualenv](http://docs.python-guide.org/en/latest/dev/virtualenvs/) using pip is recommended.
@@ -45,7 +45,13 @@ $ python setup.py install
 
 (The below commands assume you're in the repository root.)
 
-Using [tox](https://tox.readthedocs.io/) to run tests is recommended.
+You can use [pytest](http://doc.pytest.org/) to run tests in your current Python environment.
+```sh
+$ pip install pytest
+$ py.test
+```
+
+Or if you're planning to develop on `pycallnumber`, you can use [tox](https://tox.readthedocs.io/) to run tests against multiple Python versions.
 ```sh
 $ pip install tox
 $ tox               # run tests against all configured environments
@@ -53,20 +59,6 @@ $ tox -e py27       # run tests just against python 2.7
 $ tox -e py34       # run tests just against python 3.4
 etc.
 ```
-
-Tox calls [pytest](http://doc.pytest.org/) to run tests, so you can of course also run tests this way.
-```sh
-$ pip install pytest
-$ py.test
-```
-
-What's the difference? Running `py.test` directly runs tests using your currently active Python environment. Tox gives you a consistent way to run tests against one or more particular environments without having to juggle them yourself.
-
-Finally, note that you can pass arguments to py.test from tox, using `tox -- ...`. Arguments after the `--` are passed to py.test.
-```sh
-$ tox -- -x        # -x is passed to py.test
-```
-
 
 ## What can you do with pycallnumber?
 
@@ -79,7 +71,7 @@ You can parse call number strings, like Library of Congress call numbers ...
 >>> import pycallnumber as pycn
 >>> cn = pycn.callnumber('MT 1001 .C35 B40 1992 no. 1')
 >>> cn
-<LC 'MT 1001 .C35 1992'>
+<LC 'MT 1001 .C35 B40 1992 no. 1'>
 >>> cn.classification
 <LcClass 'MT 1001'>
 >>> cn.classification.letters
