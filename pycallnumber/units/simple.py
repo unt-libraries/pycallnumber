@@ -148,7 +148,7 @@ class Formatting(SimpleUnit):
     })
     is_formatting = True
     template = SimpleTemplate(
-        min_length=0,
+        min_length=1,
         max_length=None,
         base_pattern=r'[^A-Za-z0-9]',
         base_description='non-alphanumeric symbol'
