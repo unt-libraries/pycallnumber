@@ -12,6 +12,7 @@ import fcntl
 import termios
 import struct
 import importlib
+import types
 
 from .exceptions import InvalidCallNumberStringError
 
@@ -138,13 +139,22 @@ def create_unit(cnstr, possible_types, useropts, name='', is_separator=False):
 
 
 def get_terminal_size(default_width=100, default_height=50):
-    winsize_struct = struct.pack('HHHH', 0, 0, 0, 0)
+    # this try/except block detects and works around a Py2.7.5 bug with
+    # passing a unicode value as the first arg to struct methods
+    try:
+        struct.pack('HH', 0, 0)
+    except TypeError:
+        fmt = types.StringType('HHHH')
+    else:
+        fmt = 'HHHH'
+
+    winsize_struct = struct.pack(fmt, 0, 0, 0, 0)
     try:
         packed_winsize = fcntl.ioctl(0, termios.TIOCGWINSZ, winsize_struct)
     except IOError:
         height, width = (default_height, default_width)
     else:
-        height, width, _, _ = struct.unpack('HHHH', packed_winsize)
+        height, width, _, _ = struct.unpack(fmt, packed_winsize)
     return width, height
 
 
