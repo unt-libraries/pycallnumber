@@ -214,6 +214,7 @@ class SuDoc(AlphaNumericSymbol):
         if hasattr(self.stem, 'series'):
             if not getattr(self.stem.series, 'related_series'):
                 blank_related_series = Formatting.derive(
+                    min_length=0,
                     for_sort=lambda x: CompoundUnit.sort_break
                 )('')
                 self.stem.series._parts.append(blank_related_series)

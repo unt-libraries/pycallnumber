@@ -68,21 +68,20 @@ UNITS_DATA = {
     },
     u.Formatting: {
         'markers': ['simple', 'Formatting'],
-        'valid': ['', SYMBOLS, '  '],
-        'invalid': ['A', '1', 'A1-', 'A1 '],
+        'valid': [SYMBOLS, '  '],
+        'invalid': ['', 'A', '1', 'A1-', 'A1 '],
         'sort': [
-            ({'use_formatting_in_sort': True}, '', '-'),
+            ({'use_formatting_in_sort': True}, ' ', '-'),
         ],
         'sort_equivalence': [
-            ({'use_formatting_in_sort': True}, '', '-', False),
-            ({'use_formatting_in_sort': False}, '', '-', True),
+            ({'use_formatting_in_sort': True}, ' ', '-', False),
+            ({'use_formatting_in_sort': False}, ' ', '-', True),
         ],
         'search': [
             ({'use_formatting_in_search': True}, '-', '-'),
             ({'use_formatting_in_search': False}, '-', '')
         ],
         'display': [
-            ({}, '', ''),
             ({}, ' ', ' '),
             ({}, SYMBOLS, SYMBOLS)
         ],
@@ -123,8 +122,8 @@ UNITS_DATA = {
     },
     u.AlphaSymbol: {
         'markers': ['compound', 'AlphaSymbol'],
-        'valid': ['', 'a ', 'a-', 'a', ' ', '-'],
-        'invalid': ['1', 'a1', 'a 1', '1 '],
+        'valid': ['a ', 'a-', 'a', ' ', '-'],
+        'invalid': ['', '1', 'a1', 'a 1', '1 '],
         'sort': [
             ({'use_formatting_in_sort': True}, 'a..b', 'a.a'),
             ({'use_formatting_in_sort': True}, 'a.a', 'a.b'),
@@ -145,8 +144,8 @@ UNITS_DATA = {
     },
     u.NumericSymbol: {
         'markers': ['compound', 'NumericSymbol'],
-        'valid': ['', '1', '1 ', '1-', '1-1', ' ', '-'],
-        'invalid': ['a', 'a1', 'a ', 'a 1'],
+        'valid': ['1', '1 ', '1-', '1-1', ' ', '-'],
+        'invalid': ['', 'a', 'a1', 'a ', 'a 1'],
         'sort': [],  # nothing new to test
         'sort_equivalence': [],  # nothing new to test
         'search': [],  # nothing new to test
@@ -154,8 +153,8 @@ UNITS_DATA = {
     },
     u.AlphaNumericSymbol: {
         'markers': ['compound', 'AlphaNumericSymbol'],
-        'valid': ['', 'a', '1', 'a1', '1a' '-', 'a1-', 'a 1', '1 a', ' a1'],
-        'invalid': [],  # nothing is invalid
+        'valid': ['a', '1', 'a1', '1a' '-', 'a1-', 'a 1', '1 a', ' a1'],
+        'invalid': [''],
         'sort': [],  # nothing new to test
         'sort_equivalence': [],  # nothing new to test
         'search': [],  # nothing new to test
@@ -394,7 +393,7 @@ UNITS_DATA = {
         'valid': ['0', '1', '1.0', '1,000', 'v1', 'v 1', 'v. 1', 'Volume 1',
                   'v. 1 c. 1', 'v1 c1', 'v1 c1 supp.', 'v1 c1 2000',
                   'v1 c1 no. 1', 'a-b 1', 'a 1-1', 'a 1e b 1'],
-        'invalid': [],  # nothing to test--nothing should be invalid
+        'invalid': [''],
         'sort': [
             ({}, '1', '2'),
             ({}, '1', '1a'),
@@ -664,8 +663,8 @@ UNITS_DATA = {
     },
     u.Local: {
         'markers': ['callnumbers', 'Local'],
-        'valid': ['', 'A1', 'A 1', 'A-1', 'AA-11 BB-22 CC-33'],
-        'invalid': [],  # nothing to test--nothing should be invalid
+        'valid': ['A1', 'A 1', 'A-1', 'AA-11 BB-22 CC-33'],
+        'invalid': [''],
         'sort': [
             ({'sort_case': ''}, 'AA-11', 'AB-11'),
             ({'sort_case': ''}, 'AB-11', 'Aa-11'),
