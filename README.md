@@ -1,9 +1,10 @@
 # pycallnumber [![Build Status](https://travis-ci.org/unt-libraries/pycallnumber.svg?branch=master)](https://travis-ci.org/unt-libraries/pycallnumber)
 
+Use pycallnumber in your library's Python projects to parse, model, and manipulate any type of call number string. Support for Library of Congress, Dewey Decimal, SuDocs, and local call numbers is built in, and you can extend built-in classes to customize behavior or model other types of call numbers and formatted strings.
 
-## About
-
-Use pycallnumber in your library's Python projects to parse, model, and manipulate any type of call number string. Support for Library of Congress, Dewey Decimal, SuDocs, and local call numbers is built in, and you can easily extend built-in classes to customize behavior or model other types of call numbers and formatted strings.
+* [Installation](#Installation)
+* [What can you do with pycallnumber?](#what-can-you-do-with-pycallnumber)
+* [Configurable settings](#configurable-settings)
 
 ## Installation
 
@@ -60,8 +61,9 @@ $ tox -e py34       # run tests just against python 3.4
 etc.
 ```
 
-## What can you do with pycallnumber?
+[Top](#top)
 
+## What can you do with pycallnumber?
 
 #### Parse
 
@@ -494,3 +496,113 @@ pycallnumber.exceptions.InvalidCallNumberStringError: '23.00' is not a valid UsD
 
 '23.00' does not match any grouping.
 ```
+
+[Top](#top)
+
+## Configurable settings
+
+Pycallnumber uses a package-wide `settings.py` file to store various default configuration settings. With one exception, the defaults should suffice for most uses. But, since you _can_ override certain settings, and the options aren't immediately obvious, I've documented them here.
+
+### Overriding the list of Unit types that the factory functions detect
+
+By far the most common thing that you will want to override is the list of default Unit types that the factory functions&mdash;`pycallnumber.callnumber`, `pycallnumber.cnrange`, `pycallnumber.cnset`&mdash;detect automatically. (The default list is in `pycallnumber.settings.DEFAULT_UNIT_TYPES`.)
+
+You can override the default list on a call-by-call basis. To do so, pass a list of the Unit classes you want to detect to one of the factory functions via the `unittypes` kwarg. Example:
+
+```python
+import pycallnumber
+
+class MyDewey(pycallnumber.units.Dewey):
+    # Defines local Dewey Unit type
+    # ...
+
+my_unit_types = [
+    MyDewey,
+    pycallnumber.units.LC,
+    pycallnumber.units.SuDoc,
+    pycallnumber.units.Local
+]
+call = pycallnumber.callnumber(
+    'M 801.951 L544p',
+    unittypes=my_unit_types)
+# ... rest of the script
+```
+
+Two important things to note.
+
+1. **Unit type order matters.** A string may match multiple Unit types, and the factory functions will use whatever type matches first. Make sure you have them listed in order of precedence. For instance, the `Local` type will match just about anything and serves as a catch-all, so it's listed last. Since you can vary the list on a call-by-call basis, you could tailor that list dynamically to help increase chances of matching a particular call number to the correct type.
+
+2. **Your `unittypes` list should be a list of classes, not a list of class path strings.** The `settings.DEFAULT_UNIT_TYPES` is a list of class path strings, but this was done to get around having circular imports in the `settings` module.
+
+### Overriding certain Unit options
+
+Each Unit type has a list of options that you can pass via kwargs when you instantiate it. Children classes inherit options from their parents. Default values for each class are set via an `options_defaults` class attribute, and the default defaults are in `settings.py`. These values should work for 99% of uses, but you can override them if you need to.
+
+#### Alphabetic case options
+
+`units.simple.Alphabetic`, all Unit types derived from that type, and all `CompoundUnit` types that include a Unit derived from that type allow you to control how alphabetic case is normalized.
+
+Value `'lower'` normalizes alphabetic characters to lowercase; `'upper'` normalizes to uppercase. Anything else keeps the original case.
+
+* `display_case` controls what case the `for_print` Unit method outputs. Default is a blank string, to keep the original case (`settings.DEFAULT_DISPLAY_CASE`).
+
+* `search_case` controls what case the `for_search` Unit method outputs. Default is `'lower'` (`settings.DEFAULT_SEARCH_CASE`).
+
+* `sort_case` controls what case the `for_sort` Unit method outputs. Default is `'lower'` (`settings.DEFAULT_SORT_CASE`).
+
+#### Formatting 'use in' options
+
+`units.simple.Formatting`, all Unit types derived from that type, and all `CompoundUnit` types that include a Unit derived from that type allow you to control whether or not formatting appears in normalized forms of that Unit.
+
+Value `True` means the formatting characters are included in the normalized string; `False` means they are not.
+
+* `use_formatting_in_search` controls whether the `for_search` Unit method output includes formatting characters. Default is `False` (`settings.DEFAULT_USE_FORMATTING_IN_SEARCH`).
+* `use_formatting_in_sort` controls whether the `for_sort` Unit method output includes formatting characters. Default is `False` (`settings.DEFAULT_USE_FORMATTING_IN_SORT`).
+
+#### How to override Unit options
+
+There are four ways to override Unit options, listed here in order of precedence.
+
+1. Setting the relevant class attribute for a Unit type will force that type to use that particular value for that option, always. This overrides absolutely everything else.
+
+    ```pycon
+    >>> pycallnumber.units.Cutter.sort_case = 'upper'
+    >>> pycallnumber.units.Cutter('c35').for_sort()
+    u'C!35'
+    ```
+
+2. Set the option for an individual object by passing the option via a kwarg when you initialize the object. This will override any options defaults (see 4) but **not** forced class attributes (see 1).
+
+    ```pycon
+    >>> pycallnumber.units.Cutter('c35', sort_case='upper').for_sort()
+    u'C!35'
+    ```
+
+3. If you're using one of the factory functions, you can pass options in using a dict via the `useropts` kwarg. The options get passed to the correct Unit object when it's initialized. This is equivalent to 2.
+
+    ```pycon
+    >>> myopts = {'sort_case': 'upper'}
+    >>> mytypes = [pycallnumber.units.Cutter]
+    >>> pycallnumber.callnumber('c35',
+    ...                         unittypes=mytypes,
+    ...                         useropts=myopts).for_sort()
+    u'C!35'
+    ```
+
+4. You can set or change the default value for an option on a particular class by setting the relevant option in the `options_defaults` class attribute (a dict). This changes the default for that Unit type, which is what's used if nothing else overrides it. **Caveat**: be careful that you create a copy of the `options_defaults` dict before making changes to it. Otherwise you will end up changing defaults for other Unit types.
+
+    ```pycon
+    >>> pycallnumber.units.Cutter.options_defaults =\
+    ...     pycallnumber.units.Cutter.options_defaults.copy()
+    >>> pycallnumber.units.Cutter.options_defaults['sort_case'] = 'upper'
+    >>> pycallnumber.units.Cutter('c35').for_sort()
+    u'C!35'
+    >>> pycallnumber.units.Cutter('C35', sort_case='lower').for_sort()
+    u'c!35'
+    ```
+ 
+#### Default settings you cannot override
+
+Currently there is one default value that you cannot override directly. That is `settings.DEFAULT_MAX_NUMERIC_ZFILL`, which is `10`. This means any `units.simple.Numeric` (or derived) class with no `max_length` set will, by default, fill zeros to 10 digits. If you create a new `Numeric` class with a valid `max_length`, then the zero-padding (`max_numeric_zfill`) will be adjusted for you automatically based on the max length.
+
+[Top](#top)
