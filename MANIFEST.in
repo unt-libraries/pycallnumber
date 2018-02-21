@@ -1,0 +1,3 @@
+include LICENSE.txt README.md pytest.ini tox.ini
+recursive-include tests *
+global-exclude *.py[co]
