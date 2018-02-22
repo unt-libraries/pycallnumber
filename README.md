@@ -10,23 +10,28 @@ Use pycallnumber in your library's Python projects to parse, model, and manipula
 
 ### Requirements
 
-  * Python 2
-    * Python 2.7 and future
-  * OR Python 3, >= 3.4
+  * Python 2.7, 3.4, 3.5, or 3.6
 
 ### Setup
 
-Download the repository to a project directory like `pycallnumber`:
+Installing to a [virtualenv](http://docs.python-guide.org/en/latest/dev/virtualenvs/) using pip is recommended.
 
 ```sh
-$ git clone https://github.com/unt-libraries/pycallnumber.git pycallnumber
+$ pip install -U pip        # Do this if the install fails at first
+$ pip install pycallnumber
+```
+
+#### Development setup and testing
+
+If you want to contribute to pycallnumber, you'll want to fork the project and then download and install your fork from GitHub. E.g.:
+
+```sh
+$ git clone https://github.com/[your-github-user]/pycallnumber.git pycallnumber
 ```
 or (SSH)
 ```sh
-$ git clone git@github.com:unt-libraries/pycallnumber.git pycallnumber
+$ git clone git@github.com:[your-github-user]/pycallnumber.git pycallnumber
 ```
-
-Installing to a [virtualenv](http://docs.python-guide.org/en/latest/dev/virtualenvs/) using pip is recommended.
 
 ```sh
 $ pip install ./pycallnumber
@@ -42,9 +47,9 @@ $ cd pycallnumber
 $ python setup.py install
 ```
 
-### Tests
+##### Running tests
 
-(The below commands assume you're in the repository root.)
+(The below commands assume you've installed from GitHub and are in the repository root.)
 
 You can use [pytest](http://doc.pytest.org/) to run tests in your current Python environment.
 ```sh
@@ -52,7 +57,7 @@ $ pip install pytest
 $ py.test
 ```
 
-Or if you're planning to develop on `pycallnumber`, you can use [tox](https://tox.readthedocs.io/) to run tests against multiple Python versions.
+Or you can use [tox](https://tox.readthedocs.io/) to run tests against multiple Python versions.
 ```sh
 $ pip install tox
 $ tox               # run tests against all configured environments
