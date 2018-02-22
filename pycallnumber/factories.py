@@ -14,23 +14,19 @@ def callnumber(cnstr, name='', useropts=None, unittypes=None):
     types.
 
     Use ``name`` to specify the name of the resulting Unit object.
-    Defaults to an empty string. It generally isn't import that this is
-    specified, unless your code makes heavy use of the Unit.name.
+    Defaults to an empty string. It generally isn't important that this
+    is specified, unless your code makes heavy use of the Unit.name.
 
     Use ``useropts`` to pass sets of Unit-specific options to the
-    resulting Unit object. Defaults are found in
-    settings.DEFAULT_UNIT_OPTIONS. You can set this variable to
-    override the defaults globally, or pass your own dict to override
-    on a per-call basis.
+    resulting Unit object (as a dict).
 
     Use ``unittypes`` to specify the list of valid Unit types to use
     to generate Unit objects. The first Unit type found that matches
     the given call number string is returned, so order matters.
-    Defaults are found in settings.DEFAULT_UNIT_TYPES. Set this
-    variable to override defaults globally, or pass your own list to
-    override on a per-call basis.
+    Defaults are found in settings.DEFAULT_UNIT_TYPES. Pass your own
+    list to override the default.
     """
-    useropts = useropts or settings.DEFAULT_UNIT_OPTIONS
+    useropts = useropts or {}
     utypes = unittypes or [load_class(t) for t in settings.DEFAULT_UNIT_TYPES]
     cn_unit = create_unit(cnstr, utypes, useropts, name)
     if cn_unit is None:
@@ -68,10 +64,10 @@ def cnrange(start, end, startname='', endname='', useropts=None,
 
     Use the ``rangesettype`` kwarg to specify what type of object you
     want to generate. The default is settings.DEFAULT_RANGESET_TYPE,
-    which defaults to RangeSet. Override this if you want to provide
-    your own class. (It must be a subclass of RangeSet.)
+    which defaults to RangeSet. If you provide your own class, it must
+    be a subclass of RangeSet.
     """
-    useropts = useropts or settings.DEFAULT_UNIT_OPTIONS
+    useropts = useropts or {}
     utypes = unittypes or [load_class(t) for t in settings.DEFAULT_UNIT_TYPES]
     rangesettype = rangesettype or load_class(settings.DEFAULT_RANGESET_TYPE)
     try:
@@ -124,7 +120,7 @@ def cnset(ranges, names=None, useropts=None, unittypes=None,
     caught while trying to parse it.
 
     """
-    useropts = useropts or settings.DEFAULT_UNIT_OPTIONS
+    useropts = useropts or {}
     utypes = unittypes or [load_class(t) for t in settings.DEFAULT_UNIT_TYPES]
     rangesettype = rangesettype or load_class(settings.DEFAULT_RANGESET_TYPE)
     rangeset = rangesettype()
