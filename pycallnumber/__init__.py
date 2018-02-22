@@ -21,11 +21,19 @@ from . import units
 from . import utils
 from .factories import callnumber, cnrange, cnset
 
-__version__ = '0.1'
-__author__ = 'Jason Thomale'
 __all__ = [settings, CallNumberError, CallNumberWarning,
            InvalidCallNumberStringError, SettingsError, MethodError,
            OptionsError, UtilsError, RangeSetError, BadRange, Options,
            ObjectWithOptions, Template, SimpleTemplate, CompoundTemplate,
            Grouping, Unit, SimpleUnit, CompoundUnit, RangeSet, units,
            utils, callnumber, cnrange, cnset]
+
+__version__ = '0.1.1'
+__name__ = 'pycallnumber'
+__url__ = 'https://github.com/unt-libraries/pycallnumber'
+__description__ = 'A Python library for parsing call numbers.'
+__license__ = 'BSD'
+__author__ = 'Jason Thomale'
+__author_email__ = 'jason.thomale@unt.edu'
+__maintainer__ = 'University of North Texas Libraries'
+__keywords__ = 'python, callnumber, callnumbers, call number, call numbers'
