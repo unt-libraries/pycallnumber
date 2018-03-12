@@ -200,8 +200,10 @@ def _pretty_paragraph(in_str, adjusted_line_width, indent):
     return out_paragraph
 
 
-def pretty(in_data, max_line_width=get_terminal_size()[0], indent_level=0,
+def pretty(in_data, max_line_width=None, indent_level=0,
            tab_width=4):
+    if max_line_width is None:
+        max_line_width = get_terminal_size()[0]
     in_str = str(in_data)
     indent_length = tab_width * indent_level
     indent = ''.join(' ' for _ in range(0, indent_length))
