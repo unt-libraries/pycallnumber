@@ -173,10 +173,13 @@ def _get_terminal_size_windows():
     handle = windll.kernel32.GetStdHandle(-12)
     csbi = create_string_buffer(22)
     res = windll.kernel32.GetConsoleScreenBufferInfo(handle, csbi)
-    # Windows and Unix-like systems have different ways of going about finding terminal size.
-    # Throw an IOError on failure to stay similar to the Unix-like API (ioctl throws IOError on failure).
+    # Windows and Unix-like systems have different ways of going about finding
+    # terminal size. Throw an IOError on failure to stay similar to the
+    # Unix-like API (ioctl throws IOError on failure).
     if res:
-        _, _, _, _, _, left, top, right, bottom, _, _ = struct.unpack("hhhhHhhhhhh", csbi.raw)
+        (_, _, _, _, _,
+         left, top, right, bottom,
+         _, _) = struct.unpack("hhhhHhhhhhh", csbi.raw)
         width = right - left + 1
         height = bottom - top + 1
         return width, height
