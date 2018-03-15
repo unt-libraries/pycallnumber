@@ -8,8 +8,6 @@ from builtins import object
 import functools
 import inspect
 import re
-import fcntl
-import termios
 import struct
 import importlib
 import types
@@ -139,6 +137,19 @@ def create_unit(cnstr, possible_types, useropts, name='', is_separator=False):
 
 
 def get_terminal_size(default_width=100, default_height=50):
+    try:
+        terminal_size = _get_terminal_size_unixlike()
+    except (IOError, ImportError):
+        try:
+            terminal_size = _get_terminal_size_windows()
+        except (IOError, ImportError):
+            terminal_size = default_width, default_height
+    return terminal_size
+
+
+def _get_terminal_size_unixlike():
+    import fcntl
+    import termios
     # this try/except block detects and works around a Py2.7.5 bug with
     # passing a unicode value as the first arg to struct methods
     try:
@@ -149,13 +160,30 @@ def get_terminal_size(default_width=100, default_height=50):
         fmt = 'HHHH'
 
     winsize_struct = struct.pack(fmt, 0, 0, 0, 0)
-    try:
-        packed_winsize = fcntl.ioctl(0, termios.TIOCGWINSZ, winsize_struct)
-    except IOError:
-        height, width = (default_height, default_width)
-    else:
-        height, width, _, _ = struct.unpack(fmt, packed_winsize)
+    packed_winsize = fcntl.ioctl(0, termios.TIOCGWINSZ, winsize_struct)
+    height, width, _, _ = struct.unpack(fmt, packed_winsize)
     return width, height
+
+
+def _get_terminal_size_windows():
+    from ctypes import windll, create_string_buffer
+    # stdin handle is -10
+    # stdout handle is -11
+    # stderr handle is -12
+    handle = windll.kernel32.GetStdHandle(-12)
+    csbi = create_string_buffer(22)
+    res = windll.kernel32.GetConsoleScreenBufferInfo(handle, csbi)
+    # Windows and Unix-like systems have different ways of going about finding
+    # terminal size. Throw an IOError on failure to stay similar to the
+    # Unix-like API (ioctl throws IOError on failure).
+    if res:
+        (_, _, _, _, _,
+         left, top, right, bottom,
+         _, _) = struct.unpack("hhhhHhhhhhh", csbi.raw)
+        width = right - left + 1
+        height = bottom - top + 1
+        return width, height
+    raise IOError
 
 
 def _pretty_paragraph(in_str, adjusted_line_width, indent):
@@ -175,8 +203,10 @@ def _pretty_paragraph(in_str, adjusted_line_width, indent):
     return out_paragraph
 
 
-def pretty(in_data, max_line_width=get_terminal_size()[0], indent_level=0,
+def pretty(in_data, max_line_width=None, indent_level=0,
            tab_width=4):
+    if max_line_width is None:
+        max_line_width = get_terminal_size()[0]
     in_str = str(in_data)
     indent_length = tab_width * indent_level
     indent = ''.join(' ' for _ in range(0, indent_length))
