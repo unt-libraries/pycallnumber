@@ -28,7 +28,7 @@ __all__ = [settings, CallNumberError, CallNumberWarning,
            Grouping, Unit, SimpleUnit, CompoundUnit, RangeSet, units,
            utils, callnumber, cnrange, cnset]
 
-__version__ = '0.1.1'
+__version__ = '0.1.2'
 __name__ = 'pycallnumber'
 __url__ = 'https://github.com/unt-libraries/pycallnumber'
 __description__ = 'A Python library for parsing call numbers.'
