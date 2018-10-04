@@ -10,7 +10,7 @@ Use pycallnumber in your library's Python projects to parse, model, and manipula
 
 ### Requirements
 
-  * Python 2.7, 3.4, 3.5, or 3.6
+  * Python 2.7, 3.4, 3.5, 3.6, or 3.7
 
 ### Setup
 
@@ -38,7 +38,7 @@ $ pip install ./pycallnumber
 ```
 or, if you're updating to a newer version,
 ```sh
-$ pip install --update ./pycallnumber
+$ pip install --upgrade ./pycallnumber
 ```
 
 If not using pip, you can run the setuptools install command instead:
