@@ -35,7 +35,13 @@ def memoize(function):
     values. Order of args in the key will follow the order in the
     function's signature, even if kwargs are called out of order.
     """
-    argnames, _, _, _ = inspect.getargspec(function)
+    try:
+        sig = inspect.signature(function)
+    except AttributeError:
+        argnames, _, _, _ = inspect.getargspec(function)
+    else:
+        argnames = [arg for arg in sig.parameters.keys()]
+
     if len(argnames) > 0 and argnames[0] in ('self', 'cls'):
         function_is_method = True
         argnames = argnames[1:]
