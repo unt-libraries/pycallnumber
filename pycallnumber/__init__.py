@@ -5,7 +5,6 @@ Dewey Decimal, US SuDocs, and others)--parse them, normalize them, sort
 them.
 """
 
-from __future__ import unicode_literals
 from __future__ import absolute_import
 
 from . import settings
@@ -29,7 +28,7 @@ __all__ = ['settings', 'CallNumberError', 'CallNumberWarning',
            'CompoundUnit', 'RangeSet', 'units',
            'utils', 'callnumber', 'cnrange', 'cnset']
 
-__version__ = '0.1.3'
+__version__ = '0.1.4'
 __name__ = 'pycallnumber'
 __url__ = 'https://github.com/unt-libraries/pycallnumber'
 __description__ = 'A Python library for parsing call numbers.'
