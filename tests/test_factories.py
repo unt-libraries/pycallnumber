@@ -54,6 +54,14 @@ _100a = AnotherFactoryTestType('100 A')
 
 # Tests
 
+def test_star_imports():
+    """Star imports should work without raising errors."""
+    from context import pycallnumber
+    all_imports = __import__('pycallnumber', globals(), locals(), ['*'])
+    assert all_imports.callnumber
+    assert len(all_imports.__all__) == len(pycallnumber.__all__)
+
+
 @pytest.mark.callnumber_factory
 def test_callnumber_selects_correct_type_using_unittype_kwarg():
     """Calls to the ``callnumber`` factory should return the correct
