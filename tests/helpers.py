@@ -87,12 +87,13 @@ def generate_params(data, param_type):
         for values in param_set:
             if not isinstance(values, tuple):
                 values = (values,)
-            params = (kind,) + values
-            for m in markers:
-                params = m(params)
-            flattened.append(params)
+            inner_params_list = (kind,) + values
+            flattened.append(pytest.param(*inner_params_list, marks=markers))
     return flattened
 
 
-def mark_params(params, marker):
-    return [marker(p) for p in params]
+def mark_params(param_sets, markers):
+    try:
+        return [pytest.param(*p.values, marks=markers) for p in param_sets]
+    except AttributeError:
+        return [pytest.param(*p, marks=markers) for p in param_sets]
