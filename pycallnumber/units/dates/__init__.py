@@ -3,4 +3,4 @@ from __future__ import absolute_import
 
 from .datestring import DateString
 
-__all__ = [DateString]
+__all__ = ['DateString']
