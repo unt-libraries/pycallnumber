@@ -1,5 +1,3 @@
-from __future__ import unicode_literals
-
 import pytest
 
 from context import units as u
@@ -716,6 +714,35 @@ SEARCH_TEST_PARAMS = generate_params(UNITS_DATA, 'search')
 
 
 # Tests
+
+def test_units_star_imports():
+    """Star imports for the ``units`` package should work without
+    raising errors."""
+    from context import pycallnumber
+    all_imp = __import__('pycallnumber.units', globals(), locals(), ['*'])
+    assert all_imp.Alphabetic
+    assert len(all_imp.__all__) == len(pycallnumber.units.__all__)
+
+
+def test_units_callnumbers_star_imports():
+    """Star imports for the ``units.callnumbers`` package should work
+    without raising errors."""
+    from context import pycallnumber
+    all_imp = __import__('pycallnumber.units.callnumbers', globals(),
+                         locals(), ['*'])
+    assert all_imp.LC
+    assert len(all_imp.__all__) == len(pycallnumber.units.callnumbers.__all__)
+
+
+def test_units_dates_star_imports():
+    """Star imports for the ``units.dates`` package should work without
+    raising errors."""
+    from context import pycallnumber
+    all_imp = __import__('pycallnumber.units.dates', globals(), locals(),
+                         ['*'])
+    assert all_imp.DateString
+    assert len(all_imp.__all__) == len(pycallnumber.units.dates.__all__)
+
 
 @pytest.mark.parametrize('tclass, tstr', VALID_TEST_PARAMS)
 def test_Unit_validate_is_valid(tclass, tstr):
