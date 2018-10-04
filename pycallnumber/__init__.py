@@ -5,7 +5,6 @@ Dewey Decimal, US SuDocs, and others)--parse them, normalize them, sort
 them.
 """
 
-from __future__ import unicode_literals
 from __future__ import absolute_import
 
 from . import settings
