@@ -21,14 +21,15 @@ from . import units
 from . import utils
 from .factories import callnumber, cnrange, cnset
 
-__all__ = [settings, CallNumberError, CallNumberWarning,
-           InvalidCallNumberStringError, SettingsError, MethodError,
-           OptionsError, UtilsError, RangeSetError, BadRange, Options,
-           ObjectWithOptions, Template, SimpleTemplate, CompoundTemplate,
-           Grouping, Unit, SimpleUnit, CompoundUnit, RangeSet, units,
-           utils, callnumber, cnrange, cnset]
+__all__ = ['settings', 'CallNumberError', 'CallNumberWarning',
+           'InvalidCallNumberStringError', 'SettingsError', 'MethodError',
+           'OptionsError', 'UtilsError', 'RangeSetError', 'BadRange',
+           'Options', 'ObjectWithOptions', 'Template', 'SimpleTemplate',
+           'CompoundTemplate', 'Grouping', 'Unit', 'SimpleUnit',
+           'CompoundUnit', 'RangeSet', 'units',
+           'utils', 'callnumber', 'cnrange', 'cnset']
 
-__version__ = '0.1.2'
+__version__ = '0.1.3'
 __name__ = 'pycallnumber'
 __url__ = 'https://github.com/unt-libraries/pycallnumber'
 __description__ = 'A Python library for parsing call numbers.'
