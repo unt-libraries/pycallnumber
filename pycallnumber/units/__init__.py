@@ -10,7 +10,8 @@ from .callnumbers.parts import Cutter, Edition, Item
 from .callnumbers import LC, LcClass, Dewey, DeweyClass, SuDoc, Agency,\
                         AgencyDotSeries, Local
 
-__all__ = [Alphabetic, Numeric, Formatting, AlphaNumeric, AlphaSymbol,
-           NumericSymbol, AlphaNumericSymbol, Number, OrdinalNumber,
-           DateString, Cutter, Edition, Item, LC, LcClass, Dewey, DeweyClass,
-           SuDoc, Agency, AgencyDotSeries, Local]
+__all__ = ['Alphabetic', 'Numeric', 'Formatting', 'AlphaNumeric',
+           'AlphaSymbol', 'NumericSymbol', 'AlphaNumericSymbol', 'Number',
+           'OrdinalNumber', 'DateString', 'Cutter', 'Edition', 'Item', 'LC',
+           'LcClass', 'Dewey', 'DeweyClass', 'SuDoc', 'Agency',
+           'AgencyDotSeries', 'Local']
