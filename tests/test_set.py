@@ -3,12 +3,12 @@ import operator
 
 import pytest
 
-from context import utils as u
-from context import unit as un
-from context import units as uns
-from context import template as t
-from context import exceptions as e
-from context import set as s
+from pycallnumber import utils as u
+from pycallnumber import unit as un
+from pycallnumber import units as uns
+from pycallnumber import template as t
+from pycallnumber import exceptions as e
+from pycallnumber import set as s
 from helpers import generate_params, mark_params
 
 

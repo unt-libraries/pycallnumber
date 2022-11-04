@@ -5,10 +5,10 @@ from __future__ import unicode_literals
 from __future__ import absolute_import
 import inspect
 
-from .options import ObjectWithOptions
-from .exceptions import InvalidCallNumberStringError
-from .template import Template, SimpleTemplate, CompoundTemplate
-from . import utils as u
+from pycallnumber.options import ObjectWithOptions
+from pycallnumber.exceptions import InvalidCallNumberStringError
+from pycallnumber.template import Template, SimpleTemplate, CompoundTemplate
+from pycallnumber import utils as u
 
 
 class Unit(u.ComparableObjectMixin, ObjectWithOptions):

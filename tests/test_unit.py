@@ -4,9 +4,9 @@ import operator
 
 import pytest
 
-from context import unit as u
-from context import template as t
-from context import exceptions as e
+from pycallnumber import unit as u
+from pycallnumber import template as t
+from pycallnumber import exceptions as e
 from helpers import generate_params
 
 

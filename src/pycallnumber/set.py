@@ -6,11 +6,11 @@ from __future__ import absolute_import
 from builtins import object
 import operator
 import copy
-
-from .exceptions import RangeSetError, BadRange
-from .unit import Unit
-from . import utils as u
 from functools import reduce
+
+from pycallnumber.exceptions import RangeSetError, BadRange
+from pycallnumber.unit import Unit
+from pycallnumber import utils as u
 
 
 class NonDiscreteSet(object):

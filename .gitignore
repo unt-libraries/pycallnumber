@@ -1,10 +1,10 @@
 *.pyc
-/dist/
-/build/
-/*.egg-info
-/*.egg
+dist/
+build/
+*.egg-info
+*.egg
 .cache/
 __pycache__/
 .python-version
-/.eggs/
-/.tox/
+.eggs/
+.tox/

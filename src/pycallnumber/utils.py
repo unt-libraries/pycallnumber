@@ -12,7 +12,7 @@ import struct
 import importlib
 import types
 
-from .exceptions import InvalidCallNumberStringError
+from pycallnumber.exceptions import InvalidCallNumberStringError
 
 
 def memoize(function):

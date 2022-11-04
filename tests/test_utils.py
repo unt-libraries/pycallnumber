@@ -4,8 +4,8 @@ import operator
 
 import pytest
 
-from context import utils as u
-from context import units as uns
+from pycallnumber import utils as u
+from pycallnumber import units as uns
 
 
 # Fixtures, factories, and test data

@@ -1,16 +1,15 @@
 """Implement the patterns that Unit objects use."""
 
-
 from __future__ import unicode_literals
 from __future__ import absolute_import
 from builtins import str
 import re
 import collections
 
-from .options import ObjectWithOptions
-from .exceptions import InvalidCallNumberStringError, SettingsError,\
-                        MethodError
-from . import utils as u
+from pycallnumber.options import ObjectWithOptions
+from pycallnumber.exceptions import InvalidCallNumberStringError,\
+                                    SettingsError, MethodError
+from pycallnumber import utils as u
 
 
 class Template(ObjectWithOptions):

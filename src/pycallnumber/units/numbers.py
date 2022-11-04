@@ -12,8 +12,8 @@ from pycallnumber import settings
 from pycallnumber.exceptions import InvalidCallNumberStringError, SettingsError
 from pycallnumber.template import CompoundTemplate
 import pycallnumber.utils as u
-from .simple import Alphabetic, Numeric, Formatting
-from .compound import AlphaNumericSymbol
+from pycallnumber.units.simple import Alphabetic, Numeric, Formatting
+from pycallnumber.units.compound import AlphaNumericSymbol
 
 
 ThreeDigits = Numeric.derive(

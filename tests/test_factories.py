@@ -1,11 +1,11 @@
 import pytest
 
-from context import unit as un
-from context import units as uns
-from context import template as t
-from context import exceptions as e
-from context import set as s
-from context import factories as f
+from pycallnumber import unit as un
+from pycallnumber import units as uns
+from pycallnumber import template as t
+from pycallnumber import exceptions as e
+from pycallnumber import set as s
+from pycallnumber import factories as f
 
 
 # Fixtures, factories, and test data
@@ -54,7 +54,7 @@ _100a = AnotherFactoryTestType('100 A')
 
 def test_star_imports():
     """Star imports should work without raising errors."""
-    from context import pycallnumber
+    import pycallnumber
     all_imports = __import__('pycallnumber', globals(), locals(), ['*'])
     assert all_imports.callnumber
     assert len(all_imports.__all__) == len(pycallnumber.__all__)
