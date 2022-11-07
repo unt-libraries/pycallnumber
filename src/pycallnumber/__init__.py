@@ -9,7 +9,7 @@ from __future__ import absolute_import
 
 try:
     from importlib import metadata
-except (ImportError, ModuleNotFoundError):
+except ImportError:
     import importlib_metadata as metadata
 
 from pycallnumber import settings
@@ -29,11 +29,11 @@ from pycallnumber.factories import callnumber, cnrange, cnset
 _md = metadata.metadata('pycallnumber')
 __version__ = metadata.version('pycallnumber')
 __name__ = 'pycallnumber'
-__url__ = _md['Project-url'].split(', ')[1]
+__url__ = _md['Home-page']
 __description__ = _md['Summary']
-__license__ = 'BSD'
-__author__ = _md['Author-email'].split(' <')[0]
-__author_email__ = _md['Author-email'].split(' <')[1].rstrip('>')
+__license__ = _md['License']
+__author__ = _md['Author']
+__author_email__ = _md['Author-email']
 __maintainer__ = _md['Maintainer']
 __keywords__ = _md['Keywords'] 
 __all__ = ['settings', 'CallNumberError', 'CallNumberWarning',

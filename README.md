@@ -1,4 +1,4 @@
-# pycallnumber [![Build Status](https://travis-ci.org/unt-libraries/pycallnumber.svg?branch=master)](https://travis-ci.org/unt-libraries/pycallnumber)
+# pycallnumber
 
 Use pycallnumber in your library's Python projects to parse, model, and manipulate any type of call number string. Support for Library of Congress, Dewey Decimal, SuDocs, and local call numbers is built in, and you can extend built-in classes to customize behavior or model other types of call numbers and formatted strings.
 
@@ -10,60 +10,68 @@ Use pycallnumber in your library's Python projects to parse, model, and manipula
 
 ### Requirements
 
-  * Python 2.7, 3.4, 3.5, 3.6, or 3.7
+Tests pass on Linux and MacOS Python 2.7, 3.5, 3.6, 3.7, 3.8, 3.9, 3.10, and 3.11. Version 3.4 and below may still work, but I'm unable to get these to compile any more so cannot test them.
+
+#### Warning: Outdated Python Versions
+
+The next version of pycallnumber (likely 1.0.0) will drop support for Python versions older than 3.7.
+
+### Dependencies
+
+If you're using Python >=3.8, there are no external dependencies beyond the standard library.
+
+For Python 2.7 to 3.7, the `importlib_metadata` backport is used for `importlib.metadata` functionality (first available in Python 3.8).
+
+For Python 2.7, the `future` module is used to replicate various Python 3 behaviors.
 
 ### Setup
 
-Installing to a [virtualenv](http://docs.python-guide.org/en/latest/dev/virtualenvs/) using pip is recommended.
+Installing to a [virtualenv](https://docs.python-guide.org/en/latest/dev/virtualenvs/) using pip is recommended.
 
 ```sh
-$ pip install -U pip        # Do this if the install fails at first
-$ pip install pycallnumber
+$ python -m pip install pycallnumber
 ```
 
 #### Development setup and testing
 
-If you want to contribute to pycallnumber, you'll want to fork the project and then download and install your fork from GitHub. E.g.:
+If you want to contribute to pycallnumber, you should fork the project and then download and install your fork from GitHub. E.g.:
 
 ```sh
-$ git clone https://github.com/[your-github-user]/pycallnumber.git pycallnumber
+git clone https://github.com/[your-github-user]/pycallnumber.git pycallnumber
 ```
 or (SSH)
 ```sh
-$ git clone git@github.com:[your-github-user]/pycallnumber.git pycallnumber
+git clone git@github.com:[your-github-user]/pycallnumber.git pycallnumber
 ```
 
-```sh
-$ pip install ./pycallnumber
-```
-or, if you're updating to a newer version,
-```sh
-$ pip install --upgrade ./pycallnumber
-```
+Then use pip to do an editable install of the package with the `dev` extras (which installs pytest).
 
-If not using pip, you can run the setuptools install command instead:
 ```sh
-$ cd pycallnumber
-$ python setup.py install
+cd pycallnumber
+python -m pip install -e .[dev]
 ```
 
 ##### Running tests
 
-(The below commands assume you've installed from GitHub and are in the repository root.)
+(The below commands assume you've installed from GitHub as described above and are in the repository root.)
 
-You can use [pytest](http://doc.pytest.org/) to run tests in your current Python environment.
+Invoke [pytest](http://doc.pytest.org/) to run tests in your current Python environment.
 ```sh
-$ pip install pytest
-$ py.test
+pytest
 ```
 
-Or you can use [tox](https://tox.readthedocs.io/) to run tests against multiple Python versions.
+##### Tox
+
+You can use [tox](https://tox.wiki/en/latest/) to run tests against multiple Python versions, provided you have them available on the `PATH`. An excellent tool for this is [pyenv](https://github.com/pyenv/pyenv) with [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv).
+
+The tox configuration is in `pyproject.toml` (see the `[tool.tox]` section), which defines several test environments. You can run them all at once or target specific environments.
+
 ```sh
-$ pip install tox
-$ tox               # run tests against all configured environments
-$ tox -e py27       # run tests just against python 2.7
-$ tox -e py34       # run tests just against python 3.4
-etc.
+tox                  # run tests against all configured environments
+tox -e py27-oldest   # run tests against python 2.7 with oldest deps
+tox -e py310-latest  # run tests against python 3.10 with latest deps
+tox -e flake8        # run flake8 linting
+# etc.
 ```
 
 [Top](#top)
