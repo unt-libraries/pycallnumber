@@ -55,9 +55,8 @@ commands =
 
 [testenv:build_package]
 basepython = python3.10
-skip_install = True
+skip_install = true
 deps =
-    pytest
     build
     twine
 allowlist_externals =
@@ -67,6 +66,14 @@ commands =
     python -m build
     bash -c 'python -m twine check dist/*.whl'
     bash -c 'python -m twine check dist/*.gz'
-    bash -c 'python -m pip install dist/*.whl'
+
+[testenv:py{27,35,36,37,38,39,310,311}-test_built_package]
+skip_install = true
+deps =
+    pytest
+allowlist_externals =
+    bash
+commands =
+    bash -c 'python -m pip install {posargs:dist/*.whl}'
     pytest
 """
