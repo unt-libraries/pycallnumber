@@ -35,7 +35,7 @@ __license__ = _md['License']
 __author__ = _md['Author']
 __author_email__ = _md['Author-email']
 __maintainer__ = _md['Maintainer']
-__keywords__ = _md['Keywords'] 
+__keywords__ = _md['Keywords']
 __all__ = ['settings', 'CallNumberError', 'CallNumberWarning',
            'InvalidCallNumberStringError', 'SettingsError', 'MethodError',
            'OptionsError', 'UtilsError', 'RangeSetError', 'BadRange',
