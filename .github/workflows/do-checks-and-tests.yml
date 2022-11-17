@@ -21,8 +21,23 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python: ['2.7', '3.5', '3.6', '3.7', '3.8', '3.9', '3.10', '3.11']
-        tox-env: ['27', '35', '36', '37', '38', '39', '310', '311']
+        include:
+          - python: '2.7'
+            tox-env: '27'
+          - python: '3.5'
+            tox-env: '35'
+          - python: '3.6'
+            tox-env: '36'
+          - python: '3.7'
+            tox-env: '37'
+          - python: '3.8'
+            tox-env: '38'
+          - python: '3.9'
+            tox-env: '39'
+          - python: '3.10'
+            tox-env: '310'
+          - python: '3.11'
+            tox-env: '311'
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python
