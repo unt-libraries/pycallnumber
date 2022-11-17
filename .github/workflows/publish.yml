@@ -34,7 +34,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Check out repository
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - name: Set up Python
@@ -77,6 +78,8 @@ jobs:
           - python: '3.11'
             tox-env: '311'
     steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -89,7 +92,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: pycallnumber-dist
-      - name: Run tests
+      - name: Install built package and run tests
         run: tox -e "py${{ matrix.tox-env }}-test_built_package"
 
   publish:
