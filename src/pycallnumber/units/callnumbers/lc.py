@@ -8,7 +8,7 @@ from pycallnumber.units.simple import Alphabetic, Formatting,\
                                       DEFAULT_SEPARATOR_TYPE
 from pycallnumber.units.compound import AlphaNumericSymbol
 from pycallnumber.units.numbers import Number
-from .parts import Cutter, Edition, Item
+from pycallnumber.units.callnumbers.parts import Cutter, Edition, Item
 
 
 class LcClass(AlphaNumericSymbol):

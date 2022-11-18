@@ -1,9 +1,9 @@
 """Use factories to generate call number units and ranges."""
 from __future__ import absolute_import
 
-from . import settings
-from .utils import create_unit, load_class
-from .exceptions import InvalidCallNumberStringError, SettingsError
+from pycallnumber import settings
+from pycallnumber.utils import create_unit, load_class
+from pycallnumber.exceptions import InvalidCallNumberStringError, SettingsError
 
 
 def callnumber(cnstr, name='', useropts=None, unittypes=None):

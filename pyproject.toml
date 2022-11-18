@@ -1,0 +1,79 @@
+[build-system]
+requires = ['setuptools>=44.0.0', 'wheel', 'setuptools_scm[toml]>=5.0.2']
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+local_scheme = "no-local-version"
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+envlist = flake8,py{27,35,36,37,38,39,310,311}-{oldest,latest}
+isolated_build = True
+
+[testenv]
+extras =
+    dev
+commands =
+    pytest
+
+[testenv:py27-oldest]
+deps = 
+    pytest==3.5.0
+    importlib_metadata==2.0.0
+
+[testenv:py35-oldest]
+deps = 
+    pytest==3.5.0
+    importlib_metadata==2.0.0
+
+[testenv:py36-oldest]
+deps = 
+    pytest==3.5.0
+    importlib_metadata==2.0.0
+
+[testenv:py37-oldest]
+deps = 
+    pytest==3.5.0
+    importlib_metadata==2.0.0
+
+[testenv:py{38,39}-oldest]
+deps = 
+    pytest==3.5.0
+
+[testenv:py{310,311}-oldest]
+deps = 
+    pytest==6.2.4
+
+[testenv:flake8]
+basepython = python3.10
+skip_install = True
+deps =
+    flake8
+commands =
+    flake8 src/pycallnumber tests --exclude=__pycache__
+
+[testenv:build_package]
+basepython = python3.10
+skip_install = true
+deps =
+    build
+    twine
+allowlist_externals =
+    bash
+commands =
+    bash -c 'rm -rf dist'
+    python -m build
+    bash -c 'python -m twine check dist/*.whl'
+    bash -c 'python -m twine check dist/*.gz'
+
+[testenv:py{27,35,36,37,38,39,310,311}-test_built_package]
+skip_install = true
+deps =
+    pytest
+allowlist_externals =
+    bash
+commands =
+    bash -c 'python -m pip install {posargs:dist/*.whl}'
+    pytest
+"""

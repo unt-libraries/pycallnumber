@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 
 
-from context import options
+from pycallnumber import options
 
 
 # Fixtures, factories, and test data

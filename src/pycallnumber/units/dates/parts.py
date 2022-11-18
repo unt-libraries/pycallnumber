@@ -13,7 +13,8 @@ from datetime import datetime
 from pycallnumber.template import SimpleTemplate, CompoundTemplate
 from pycallnumber.units.simple import Formatting
 from pycallnumber.units.numbers import OrdinalNumber
-from .base import AlphaDatePart, NumericDatePart, CompoundDatePart
+from pycallnumber.units.dates.base import AlphaDatePart, NumericDatePart,\
+                                          CompoundDatePart
 
 
 class Year(NumericDatePart):

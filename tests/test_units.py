@@ -1,7 +1,7 @@
 import pytest
 
-from context import units as u
-from context import exceptions as e
+from pycallnumber import units as u
+from pycallnumber import exceptions as e
 from helpers import generate_params
 
 
@@ -718,7 +718,7 @@ SEARCH_TEST_PARAMS = generate_params(UNITS_DATA, 'search')
 def test_units_star_imports():
     """Star imports for the ``units`` package should work without
     raising errors."""
-    from context import pycallnumber
+    import pycallnumber
     all_imp = __import__('pycallnumber.units', globals(), locals(), ['*'])
     assert all_imp.Alphabetic
     assert len(all_imp.__all__) == len(pycallnumber.units.__all__)
@@ -727,7 +727,7 @@ def test_units_star_imports():
 def test_units_callnumbers_star_imports():
     """Star imports for the ``units.callnumbers`` package should work
     without raising errors."""
-    from context import pycallnumber
+    import pycallnumber
     all_imp = __import__('pycallnumber.units.callnumbers', globals(),
                          locals(), ['*'])
     assert all_imp.LC
@@ -737,7 +737,7 @@ def test_units_callnumbers_star_imports():
 def test_units_dates_star_imports():
     """Star imports for the ``units.dates`` package should work without
     raising errors."""
-    from context import pycallnumber
+    import pycallnumber
     all_imp = __import__('pycallnumber.units.dates', globals(), locals(),
                          ['*'])
     assert all_imp.DateString
