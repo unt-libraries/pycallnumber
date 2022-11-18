@@ -1,5 +1,7 @@
 # pycallnumber
 
+[![Build Status](https://github.com/unt-libraries/pycallnumber/actions/workflows/do-checks-and-tests.yml/badge.svg?branch=master)](https://github.com/unt-libraries/pycallnumber/actions)
+
 Use pycallnumber in your library's Python projects to parse, model, and manipulate any type of call number string. Support for Library of Congress, Dewey Decimal, SuDocs, and local call numbers is built in, and you can extend built-in classes to customize behavior or model other types of call numbers and formatted strings.
 
 * [Installation](#Installation)
@@ -10,11 +12,11 @@ Use pycallnumber in your library's Python projects to parse, model, and manipula
 
 ### Requirements
 
-Tests pass on Linux and MacOS Python 2.7, 3.5, 3.6, 3.7, 3.8, 3.9, 3.10, and 3.11. Version 3.4 and below may still work, but I'm unable to get these to compile any more so cannot test them.
+Tests pass on Linux and MacOS Python 2.7, 3.5, 3.6, 3.7, 3.8, 3.9, 3.10, and 3.11. Versions 3.4 and below may still work, but I'm unable to get these to compile any more so cannot test them.
 
 #### Warning: Outdated Python Versions
 
-The next version of pycallnumber (likely 1.0.0) will drop support for Python versions older than 3.7.
+***Warning*** — The next release, v1.0.0, will drop support for Python versions older than 3.7.
 
 ### Dependencies
 
