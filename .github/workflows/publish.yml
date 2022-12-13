@@ -65,8 +65,6 @@ jobs:
         include:
           - python: '2.7'
             tox-env: '27'
-          - python: '3.5'
-            tox-env: '35'
           - python: '3.6'
             tox-env: '36'
           - python: '3.7'
