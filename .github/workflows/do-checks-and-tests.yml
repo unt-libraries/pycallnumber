@@ -49,7 +49,9 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install tox
       - name: Run tests
-        run: tox -e "py${{ matrix.tox-env }}-{oldest,latest}"
+        run: |
+          tox -e "py${{ matrix.tox-env }}-oldest"
+          tox -e "py${{ matrix.tox-env }}-latest"
 
   trigger-publish:
     if: ${{ github.ref_type == 'tag' && startsWith(github.ref_name, 'v') }}
