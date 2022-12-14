@@ -32,7 +32,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
@@ -59,12 +59,14 @@ jobs:
 
   test-built-package:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     strategy:
       matrix:
         include:
           - python: '2.7'
             tox-env: '27'
+          - python: '3.5'
+            tox-env: '35'
           - python: '3.6'
             tox-env: '36'
           - python: '3.7'
@@ -101,7 +103,7 @@ jobs:
 
   publish:
     needs: test-built-package
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - name: Download built package
         uses: actions/download-artifact@v3

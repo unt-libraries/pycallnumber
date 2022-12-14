@@ -3,7 +3,7 @@ on: [push, workflow_call, workflow_dispatch]
 jobs:
 
   run-linters:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python
@@ -18,12 +18,14 @@ jobs:
         run: tox -e flake8
 
   run-tests:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     strategy:
       matrix:
         include:
           - python: '2.7'
             tox-env: '27'
+          - python: '3.5'
+            tox-env: '35'
           - python: '3.6'
             tox-env: '36'
           - python: '3.7'
