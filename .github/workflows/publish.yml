@@ -91,7 +91,7 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install tox
       - name: Download dist.tar
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4.1.7
         with:
           name: pycallnumber-dist
       - name: Un-tar built package
@@ -106,7 +106,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Download built package
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4.1.7
         with:
           name: pycallnumber-dist
       - name: Un-tar built package
